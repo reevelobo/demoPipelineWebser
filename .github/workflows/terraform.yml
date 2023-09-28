@@ -1,0 +1,23 @@
+name: 'Terraform'
+
+on:
+  push:
+    branches: [ "main" ]
+    
+  workflow_dispatch:
+
+env:
+  ARM_CLIENT_ID: '${{ secrets.SP_ID }}'
+  ARM_CLIENT_SECRET: '${{ secrets.SP_PASSWD }}'
+  ARM_TENANT_ID: '${{ secrets.TENAN_ID }}'
+  ARM_SUBSCRIPTION_ID: '${{ secrets.SUP_ID }}'
+
+
+jobs:
+  Repo-checkout:    
+    name: SHC repo Checkout
+    runs-on: ${{ vars.GIT_RUNNER }}
+    steps:                       
+      - name: Check out repository
+        uses: actions/checkout@v3
+
